@@ -3,12 +3,10 @@ import csv
 
 def parse_name(full_name):
     name_parts = full_name.split(" ")
-    if name_parts[0][0].islower():
-        return name_parts[0]
-    elif len(name_parts[0]) > 0:
-        return name_parts[-1], name_parts[0]
+    if name_parts[-1][0].islower():
+        return name_parts[0], ''
     else:
-        return name_parts[-1]
+        return name_parts[-1], name_parts[0]
 
 
 def load_data(filename):
@@ -18,7 +16,7 @@ def load_data(filename):
 
 
 def sort_by_director(data):
-    return sorted(data, key=lambda film: (parse_name(film[0]), film[2]))
+    return sorted(data, key=lambda film: (parse_name(film[0]), film[1]))
 
 
 def sort_by_year(data):
